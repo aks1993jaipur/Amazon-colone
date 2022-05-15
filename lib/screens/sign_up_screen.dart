@@ -44,120 +44,118 @@ class _SignUpScreenState extends State<SignUpScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             child: Center(
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.network(
-                      amazonLogo,
-                      height: screenSize.height * 0.10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: screenSize.height * 0.7,
-                          child: FittedBox(
-                            child: Container(
-                              height: screenSize.height * 0.85,
-                              width: screenSize.width * 0.8,
-                              padding: const EdgeInsets.all(25),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 1,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.network(
+                    amazonLogo,
+                    height: screenSize.height * 0.10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: screenSize.height * 0.7,
+                        child: FittedBox(
+                          child: Container(
+                            height: screenSize.height * 0.85,
+                            width: screenSize.width * 0.8,
+                            padding: const EdgeInsets.all(25),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1,
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'sign-Up',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 33),
                                 ),
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'sign-Up',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 33),
-                                  ),
-                                  TextFieldWidget(
-                                    title: 'Name',
-                                    controller: nameController,
-                                    obsureText: false,
-                                    hintText: 'Enter your name',
-                                  ),
-                                  TextFieldWidget(
-                                    title: 'Address',
-                                    controller: addressController,
-                                    obsureText: false,
-                                    hintText: 'Enter your address',
-                                  ),
-                                  TextFieldWidget(
-                                    title: 'email',
-                                    controller: emailController,
-                                    obsureText: false,
-                                    hintText: 'Enter your email',
-                                  ),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: CustomMainButton(
-                                        child: const Text(
-                                          'sign Up',
-                                          style: TextStyle(
-                                              letterSpacing: 0.6,
-                                              color: Colors.black),
-                                        ),
-                                        color: yellowColor,
-                                        isLoading: false,
-                                        onPressed: () async {
-                                          String output =
-                                              await authenticationmethods
-                                                  .signUpUser(
-                                                      name: nameController.text,
-                                                      address: addressController
-                                                          .text,
-                                                      email:
-                                                          emailController.text,
-                                                      password:
-                                                          passwordController
-                                                              .text);
-                                          // Navigator.pop(context);
-                                          if (output == "success") {
-                                            log("doing next step");
-                                          } else {
-                                            utils().showSnackBar(
-                                                context: context,
-                                                content: output);
-                                            log(output);
-                                          }
-                                        }),
-                                  )
-                                ],
-                              ),
+                                TextFieldWidget(
+                                  title: 'Name',
+                                  controller: nameController,
+                                  obsureText: false,
+                                  hintText: 'Enter your name',
+                                ),
+                                TextFieldWidget(
+                                  title: 'Address',
+                                  controller: addressController,
+                                  obsureText: false,
+                                  hintText: 'Enter your address',
+                                ),
+                                TextFieldWidget(
+                                  title: 'email',
+                                  controller: emailController,
+                                  obsureText: false,
+                                  hintText: 'Enter your email',
+                                ),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: CustomMainButton(
+                                      child: const Text(
+                                        'sign Up',
+                                        style: TextStyle(
+                                            letterSpacing: 0.6,
+                                            color: Colors.black),
+                                      ),
+                                      color: yellowColor,
+                                      isLoading: false,
+                                      onPressed: () async {
+                                        String output =
+                                            await authenticationmethods
+                                                .signUpUser(
+                                                    name: nameController.text,
+                                                    address:
+                                                        addressController.text,
+                                                    email: emailController.text,
+                                                    password: passwordController
+                                                        .text);
+                                        // Navigator.pop(context);
+                                        if (output == "success") {
+                                          log("doing next step");
+                                        } else {
+                                          utils().showSnackBar(
+                                              context: context,
+                                              content: output);
+                                          log(output);
+                                        }
+                                      }),
+                                )
+                              ],
                             ),
                           ),
                         ),
-                        CustomMainButton(
-                            child: const Text(
-                              'Back',
-                              style: TextStyle(
-                                letterSpacing: 0.6,
-                                color: Colors.black,
-                              ),
+                      ),
+                      CustomMainButton(
+                          child: const Text(
+                            'Back',
+                            style: TextStyle(
+                              letterSpacing: 0.6,
+                              color: Colors.black,
                             ),
-                            color: Colors.grey[400]!,
-                            isLoading: false,
-                            onPressed: () {
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return const SignInScreen();
-                              }));
-                            }),
+                          ),
+                          color: Colors.grey[400]!,
+                          isLoading: false,
+                          onPressed: () {
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const SignInScreen();
+                            }));
+                          }),
 
-                        // Navigator.pop(context);
-                      ],
-                    ),
-                  ]),
+                      // Navigator.pop(context);
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
